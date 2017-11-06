@@ -1,0 +1,6 @@
+// Mac stuff
+.DS_Store
+
+// CPP outputs
+.o
+.class

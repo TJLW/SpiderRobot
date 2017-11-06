@@ -71,6 +71,15 @@ public:
 	void Abort(void);
 	void Sleep(void);
 	void WakeUp(void);
+
+	void SetLegsBase();
+	void Extend();
+	void Fold();
+	void Grab();
+
+	void RelaxHip(int leg);
+
+
 };
 
 #endif /* CSPIDER_H_ */
