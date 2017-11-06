@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/in"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageViewup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/imageViewreset"
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:src="@drawable/item_press_reset" />
+            
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageViewdown"
+        android:layout_width="100dp"
+        android:layout_height="105dp"
+        android:layout_below="@+id/imageViewleft"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/item_press_down" />
+
+    <ImageView
+        android:id="@+id/imageViewleft"
+        android:layout_width="105dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/imageViewdown"
+        android:src="@drawable/item_press_left" />
+
+    <ImageView
+        android:id="@+id/imageViewup"
+        android:layout_width="100dp"
+        android:layout_height="105dp"
+        android:layout_above="@+id/imageViewright"
+        android:layout_toRightOf="@+id/imageViewleft"
+        android:src="@drawable/item_press_up" />
+
+    <TextView
+        android:id="@+id/seekbarvalue"
+        android:layout_width="130dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/seekBar"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:text="    Speed 50" />
+
+    <ImageView
+        android:id="@+id/imageViewunconnect"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignRight="@+id/imageViewright"
+        android:layout_below="@+id/in"
+        android:src="@drawable/unconnect" />
+
+    <ImageView
+        android:id="@+id/imageViewright"
+        android:layout_width="105dp"
+        android:layout_height="100dp"
+        android:layout_alignBottom="@+id/imageViewleft"
+        android:layout_toRightOf="@+id/imageViewup"
+        android:src="@drawable/item_press_right" />
+
+    <ImageView
+        android:id="@+id/imageViewMSwitch"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/imageViewleft"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/kmod" />
+
+    <ImageView
+        android:id="@+id/imageViewdance"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/imageViewright"
+        android:src="@drawable/item_press_dance" />
+
+        <TextView
+            android:id="@+id/z_vector"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignLeft="@+id/y_vector"
+            android:layout_below="@+id/y_vector"
+            android:layout_toLeftOf="@+id/seekbarvalue"
+            android:text="z: " />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageViewdown"
+            android:layout_centerHorizontal="true"
+            android:max="100"
+            android:progress="50" />
+
+        <TextView
+            android:id="@+id/x_vector"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/y_vector"
+            android:layout_alignTop="@+id/imageViewunconnect"
+            android:text="x: " />
+
+        <TextView
+            android:id="@+id/y_vector"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/x_vector"
+            android:layout_toLeftOf="@+id/seekbarvalue"
+            android:text="y: " />
+
+</RelativeLayout>
+
+
