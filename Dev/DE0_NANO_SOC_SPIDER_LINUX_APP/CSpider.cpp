@@ -12,34 +12,15 @@
 //#include <Math.h>
 
 
-
+#define Knee_Up_Base    60
+#define Knee_Down_Base  45
 #define HipF_Base 	   -20
 #define HipM_Base  		0
 #define HipB_Base  		20
-
-#define Knee_Up_Base    60
-#define Knee_Down_Base  45
-
 #define Ankle_Base  	45
-
 #define Dance_Angle 	20
 #define Body_Up_Base   -45
 #define Body_Down_Base  45
-
-#define HipF_Fold 	  -60
-#define HipM_Fold  		0
-#define HipB_Fold  		60
-#define Knee_Fold  		80
-#define Ankle_Fold  	90
-
-#define Knee_Extend  		-10
-#define Ankle_Extend  	-60
-
-#define KneeF_Full_Grab  		-80
-#define KneeM_Full_Grab  		-65
-#define KneeB_Full_Grab  		-80
-#define Ankle_Full_Grab  	  -15
-
 
 bool CSpider::m_bDebugDump = false;
 
@@ -64,8 +45,7 @@ CSpider::CSpider():
 	}
 }
 
-CSpider::~CSpider()
-{
+CSpider::~CSpider() {
 	// TODO Auto-generated destructor stub
 	int i;
 	for(i=0;i<LEG_NUM;i++){
@@ -73,16 +53,15 @@ CSpider::~CSpider()
 	}
 }
 
-void CSpider::Sleep(void)
-{
+
+void CSpider::Sleep(void){
 	int i;
 		for(i=0;i<LEG_NUM;i++){
 		   m_szLeg[i]->Sleep();
 		} // for i
 }
 
-void CSpider::WakeUp(void)
-{
+void CSpider::WakeUp(void){
 	int i;
 	uint32_t Start_Time;
 		for(i=0;i<LEG_NUM;i++){
@@ -92,8 +71,8 @@ void CSpider::WakeUp(void)
 		} // for i
 }
 
-bool CSpider::Init(void)
-{
+
+bool CSpider::Init(void){
 	bool bSuccess;
 	int i,j,nJointNum;
 	CSpiderLeg::JOINT_ID szJoint[] = {CSpiderLeg::Hip, CSpiderLeg::Knee, CSpiderLeg::Ankle};
@@ -120,7 +99,6 @@ bool CSpider::Init(void)
 
 	return bSuccess;
 }
-
 void CSpider::SetFootY(uint8_t Leg,float Angle)
 {
   float KneeAngle  = Angle;
@@ -134,16 +112,15 @@ void CSpider::SetFootY(uint8_t Leg,float Angle)
 	  m_szLeg[Leg]->MoveJoint(CSpiderLeg::Ankle,AnkleAngle);
 	  m_szLeg[Leg]->MoveJoint(CSpiderLeg::Knee,KneeAngle);
   }
-}
 
-bool CSpider::WaitReady(uint32_t Timeout)
-{
+}
+bool CSpider::WaitReady(uint32_t Timeout){
 
 	bool bReady = false;
 	uint32_t TimeStart;
-	//	uint32_t Timeout;
-	//	Timeout = alt_nticks() + (uint32_t)(fTimeoutSecond * (float)alt_ticks_per_second());
-	//	Timeout = OS_GetTickCount() + (uint32_t)(fTimeoutSecond * (float)OS_TicksPerSecond());
+//	uint32_t Timeout;
+//	Timeout = alt_nticks() + (uint32_t)(fTimeoutSecond * (float)alt_ticks_per_second());
+//	Timeout = OS_GetTickCount() + (uint32_t)(fTimeoutSecond * (float)OS_TicksPerSecond());
 
 	Timeout = OS_GetTickCount() + (Timeout *3);
 	while(!bReady){
@@ -158,8 +135,7 @@ bool CSpider::WaitReady(uint32_t Timeout)
 	return bReady;
 }
 
-bool CSpider::IsReady(void)
-{
+bool CSpider::IsReady(void){
 	bool bReady = true;
 	int i;
 
@@ -248,6 +224,7 @@ void CSpider::RotatelRight(uint8_t Repeat_Num)
 
 }
 
+
 void CSpider::RotatelLeft(uint8_t Repeat_Num)
 {
 	if (m_bDebugDump)
@@ -277,8 +254,8 @@ void CSpider::MoveParallelL(uint8_t Repeat_Num)
 {
 	if (m_bDebugDump)
 	  printf("MoveParallelL \n");
-	//	float fAngleAdjust_F = -40.0;
-	//	float fAngleAdjust_B =  40.0;
+//	float fAngleAdjust_F = -40.0;
+//	float fAngleAdjust_B =  40.0;
 
 	int num=0;
 	for(num=0;num<Repeat_Num;num++)
@@ -370,6 +347,8 @@ void CSpider::BodyUpDown(uint8_t Repeat_Num)
 
 	}
 }
+
+
 
 void CSpider::BodyForward()
 {
@@ -476,6 +455,7 @@ void CSpider::TiltBackward()
 	WaitReady(ReadyTime());
 }
 
+
 void CSpider::MoveTripod(TRIPOD_ID Tripod,CSpiderLeg::JOINT_ID Joint,float AngleF,float AngleM,float AngleB)
 {
 	if(Tripod == 0)
@@ -492,6 +472,7 @@ void CSpider::MoveTripod(TRIPOD_ID Tripod,CSpiderLeg::JOINT_ID Joint,float Angle
 	}
 }
 
+
 void CSpider::Stomp(uint8_t Repeat_Num)
 {
 	if (m_bDebugDump)
@@ -506,8 +487,7 @@ void CSpider::Stomp(uint8_t Repeat_Num)
 	}
 }
 
-uint32_t CSpider::ReadyTime(void)
-{
+uint32_t CSpider::ReadyTime(void){
 	uint32_t TotalReadyTime = 0, ReadyTime;
 	int i;
 
@@ -519,13 +499,12 @@ uint32_t CSpider::ReadyTime(void)
 	return TotalReadyTime;
 }
 
-bool CSpider::Standup(void)
-{
+bool CSpider::Standup(void){
 	bool bSuccess;
 	int i;
 	if (m_bDebugDump)
 		printf("[Spider]Standup\r\n");
-  ////////////////////////
+////////////////////////
 	//// Stand up  -- Adjust Hip
 	const int fAngleAdjust_F = -20;
 	const int fAngleAdjust_B =  20;
@@ -582,7 +561,6 @@ void CSpider::Reset(void)
 		WaitReady(ReadyTime());
 	}
 }
-
 void CSpider::ByeBye(uint8_t Repeat_Num)
 {
 	if (m_bDebugDump)
@@ -608,9 +586,11 @@ void CSpider::ByeBye(uint8_t Repeat_Num)
 	  WaitReady(ReadyTime());
 	  m_szLeg[LEG_RF]->MoveJoint(CSpiderLeg::Hip,HipF_Base-10);
 	  WaitReady(ReadyTime());
-
+	  
 	}
 }
+
+
 
 void CSpider::SetSpeed(int Speed)
 {
@@ -639,7 +619,7 @@ void CSpider::Abort(void)
 void CSpider::DEMO_Rollover(void)
 {
 	int i;
-
+	
 	m_szLeg[LEG_LF]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base);
 	m_szLeg[LEG_RB]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base);
 	WaitReady(ReadyTime());
@@ -737,137 +717,3 @@ void CSpider::DEMO_Dance(uint8_t Repeat_Num)
 	}
 }
 
-
-// Spider Controller Functions
-
-void CSpider::SetLegsBase()
-{
-	for(int leg = 0; leg < 6; leg++)
-	{
-		// Hips
-		if(leg == LEG_RF || leg == LEG_LF)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipF_Base);
-		}
-		else if(leg == LEG_RM || leg == LEG_LM)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipM_Base);
-		}
-		else if(leg == LEG_RB || leg == LEG_LB)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipB_Base);
-		}
-
-		// Knee
-		m_szLeg[leg]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base);
-
-		// Ankle
-		m_szLeg[leg]->MoveJoint(CSpiderLeg::Ankle,Ankle_Base);
-
-	}
-	WaitReady(ReadyTime());
-}
-
-void CSpider::Extend()
-{
-	for(int leg = 0; leg < 6; leg++)
-	{
-		// Hips
-		if(leg == LEG_RF || leg == LEG_LF)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipF_Base);
-		}
-		else if(leg == LEG_RM || leg == LEG_LM)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipM_Base);
-		}
-		else if(leg == LEG_RB || leg == LEG_LB)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipB_Base);
-		}
-
-		// Knee
-		m_szLeg[leg]->MoveJoint(CSpiderLeg::Knee,Knee_Extend);
-
-		// Ankle
-		m_szLeg[leg]->MoveJoint(CSpiderLeg::Ankle,Ankle_Extend);
-
-	}
-	WaitReady(ReadyTime());
-}
-
-void CSpider::Fold()
-{
-	for(int leg = 0; leg < 6; leg++)
-	{
-		// Hips
-		if(leg == LEG_RF || leg == LEG_LF)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipF_Fold);
-		}
-		else if(leg == LEG_RM || leg == LEG_LM)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipM_Fold);
-		}
-		else if(leg == LEG_RB || leg == LEG_LB)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipB_Fold);
-		}
-
-		// Knee
-		m_szLeg[leg]->MoveJoint(CSpiderLeg::Knee,Knee_Fold);
-
-		// Ankle
-		m_szLeg[leg]->MoveJoint(CSpiderLeg::Ankle,Ankle_Fold);
-
-	}
-	WaitReady(ReadyTime());
-}
-
-void CSpider::Grab()
-{
-	for(int leg = 0; leg < 6; leg++)
-	{
-		// Hips and Knees
-		if(leg == LEG_RF || leg == LEG_LF)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipF_Base);
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Knee,KneeF_Full_Grab);
-
-		}
-		else if(leg == LEG_RM || leg == LEG_LM)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipM_Base);
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Knee,KneeM_Full_Grab);
-
-		}
-		else if(leg == LEG_RB || leg == LEG_LB)
-		{
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipB_Base);
-			m_szLeg[leg]->MoveJoint(CSpiderLeg::Knee,KneeB_Full_Grab);
-
-		}
-
-		// Ankle
-		m_szLeg[leg]->MoveJoint(CSpiderLeg::Ankle,Ankle_Full_Grab);
-
-	}
-	WaitReady(ReadyTime());
-}
-
-void CSpider::RelaxHip(int leg)
-{
-	if(leg == LEG_RF || leg == LEG_LF)
-	{
-		m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipF_Base);
-	}
-	else if(leg == LEG_RM || leg == LEG_LM)
-	{
-		m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipM_Base);
-	}
-	else if(leg == LEG_RB || leg == LEG_LB)
-	{
-		m_szLeg[leg]->MoveJoint(CSpiderLeg::Hip,HipB_Base);
-	}
-	WaitReady(ReadyTime());
-}

@@ -4,3 +4,6 @@
 // CPP outputs
 .o
 .class
+
+// Avoid the large base application images from Terasic
+Resources/
