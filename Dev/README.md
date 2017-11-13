@@ -6,6 +6,7 @@ project. If you have any questions, please contact the TA.
 ## Getting Started
 
 ### CPP Application
+The Spider program code is located in the SpiderLinuxApplication directory.
 As you will be implementing a custom linux application, you will need to create a
 binary from your CPP code and transfer it to the Spider. Instead of using the 'Main.cpp'
 file for your code, I have created a 'Project.cpp' file that contains the essentials
@@ -26,10 +27,11 @@ you should not have to update your Spider's SD card.
 ### Spider Controller Program
 The 'Controller' binary file was created to demonstrate some of the actions you can do
 with Spider's legs. Primarily, it was created for folding the Spider's leg for easy
-storage in their boxes.
+storage in their boxes. Simply run the binary supplied in the Binaries directory to
+see the commands.
 
 I have supplied the code for this program. You may use any part you wish, though I would
-strongly suggest taking advantage of the Fold function I implemented in the 'CSpider.cpp'
+strongly suggest taking advantage of the fold function I implemented in the 'CSpider.cpp'
 file.
 
 
